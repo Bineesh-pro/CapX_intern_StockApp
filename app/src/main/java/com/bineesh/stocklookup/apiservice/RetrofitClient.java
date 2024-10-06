@@ -1,10 +1,19 @@
 package com.bineesh.stocklookup.apiservice;
 
 
-public class RetrofitClient {
-    RetrofitClient retrofitInstance;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
-    private RetrofitClient(){
-//        retrofitInstance = new RetrofitClient(
+public class RetrofitClient {
+    static Retrofit retrofitInstance = null;
+
+    public static Retrofit getRetrofitInstance(){
+        if(retrofitInstance == null){
+            retrofitInstance = new Retrofit.Builder()
+                    .baseUrl(StockAPI.BASE_URL)
+                    .addConverterFactory(GsonConverterFactory.create())
+                    .build();
+        }
+        return retrofitInstance;
     }
 }

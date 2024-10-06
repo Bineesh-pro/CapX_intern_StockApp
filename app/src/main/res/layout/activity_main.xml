@@ -25,7 +25,6 @@
 
         <EditText
             android:layout_width="0dp"
-            android:layout_weight="2"
             android:layout_height="0dp"
             android:layout_margin="5dp"
             android:id="@+id/query"
@@ -38,24 +37,27 @@
             android:hint="Search Stock"
         />
 
-        <ImageButton
-            android:layout_width="0dp"
-            android:scaleType="fitXY"
-            android:layout_weight="1"
+        <TextView
+            android:layout_width="wrap_content"
+            android:padding="10px"
+            android:textSize="20sp"
+            android:textColor="@color/white"
             android:id="@+id/search_click"
-            android:background="@drawable/search_bg"
-            android:src="@drawable/search_pic"
+            android:gravity="center"
+            android:background="@drawable/search_button_bg"
             android:layout_margin="10dp"
+            android:text="search"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="@id/guide_line_top_right"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="@id/guide_line_top"
-            android:layout_height="0dp">
-        </ImageButton>
+            android:layout_height="wrap_content">
+        </TextView>
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_margin="10dp"
+        android:id="@+id/stock_details_card"
         app:layout_constraintTop_toBottomOf="@id/guide_line_top"
         android:layout_height="wrap_content">
 
@@ -69,6 +71,7 @@
                 android:layout_width="match_parent"
                 android:text="Apple Inc. (AAPL)"
                 android:textStyle="bold"
+                android:id="@+id/company_name"
                 android:textSize="30sp"
                 android:layout_height="wrap_content">
             </TextView>
@@ -76,6 +79,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:text="226.80"
+                android:id="@+id/price"
                 android:textStyle="bold"
                 android:textSize="28sp"
                 android:layout_height="wrap_content">
@@ -84,6 +88,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:text="+1.13 (+0.50%)"
+                android:id="@+id/change_and_percent"
                 android:textStyle="bold"
                 android:textColor="#205E00"
                 android:textSize="25sp"
