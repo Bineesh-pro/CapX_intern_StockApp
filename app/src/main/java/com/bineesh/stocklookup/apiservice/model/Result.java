@@ -11,20 +11,4 @@ public class Result {
         return meta;
     }
 
-    @Override
-    public String toString() {
-        return "Result{" +
-                "meta=" + meta +
-                ", timestamp=" + timestamp +
-                ", indicators=" + indicators +
-                '}';
-    }
-
-    public ArrayList<Integer> getTimestamp() {
-        return timestamp;
-    }
-
-    public Indicators getIndicators() {
-        return indicators;
-    }
 }

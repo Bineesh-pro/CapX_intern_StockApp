@@ -8,7 +8,6 @@ import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import androidx.activity.EdgeToEdge;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -16,23 +15,12 @@ import androidx.cardview.widget.CardView;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
-
 import com.bineesh.stocklookup.apiservice.RetrofitClient;
 import com.bineesh.stocklookup.apiservice.StockAPI;
-import com.bineesh.stocklookup.apiservice.model.Indicators;
 import com.bineesh.stocklookup.apiservice.model.Meta;
-import com.bineesh.stocklookup.apiservice.model.Quote;
 import com.bineesh.stocklookup.apiservice.model.Result;
 import com.bineesh.stocklookup.apiservice.model.Stock;
 import com.bineesh.stocklookup.apiservice.model.StockChart;
-import com.github.mikephil.charting.charts.LineChart;
-import com.github.mikephil.charting.data.Entry;
-import com.github.mikephil.charting.data.LineData;
-import com.github.mikephil.charting.data.LineDataSet;
-
-import java.util.ArrayList;
-import java.util.List;
-
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;

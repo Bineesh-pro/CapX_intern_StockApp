@@ -40,41 +40,10 @@ public class Meta {
         return symbol;
     }
 
-    public String getExchangeName() {
-        return exchangeName;
-    }
-
-    public String getFullExchangeName() {
-        return fullExchangeName;
-    }
-
-    public String getInstrumentType() {
-        return instrumentType;
-    }
-
-    public int getFirstTradeDate() {
-        return firstTradeDate;
-    }
-
-    public int getRegularMarketTime() {
-        return regularMarketTime;
-    }
-
-    public boolean isHasPrePostMarketData() {
-        return hasPrePostMarketData;
-    }
-
-    public int getGmtoffset() {
-        return gmtoffset;
-    }
-
     public String getTimezone() {
         return timezone;
     }
 
-    public String getExchangeTimezoneName() {
-        return exchangeTimezoneName;
-    }
 
     public double getRegularMarketPrice() {
         return regularMarketPrice;
@@ -96,16 +65,8 @@ public class Meta {
         return regularMarketDayLow;
     }
 
-    public int getRegularMarketVolume() {
-        return regularMarketVolume;
-    }
-
     public String getLongName() {
         return longName;
-    }
-
-    public String getShortName() {
-        return shortName;
     }
 
     public double getChartPreviousClose() {
@@ -116,65 +77,5 @@ public class Meta {
         return previousClose;
     }
 
-    public int getScale() {
-        return scale;
-    }
 
-    public int getPriceHint() {
-        return priceHint;
-    }
-
-    public CurrentTradingPeriod getCurrentTradingPeriod() {
-        return currentTradingPeriod;
-    }
-
-    public ArrayList<ArrayList<Pre>> getTradingPeriods() {
-        return tradingPeriods;
-    }
-
-    public String getDataGranularity() {
-        return dataGranularity;
-    }
-
-    public String getRange() {
-        return range;
-    }
-
-    public ArrayList<String> getValidRanges() {
-        return validRanges;
-    }
-
-    @Override
-    public String toString() {
-        return "Meta{" +
-                "currency='" + currency + '\'' +
-                ", symbol='" + symbol + '\'' +
-                ", exchangeName='" + exchangeName + '\'' +
-                ", fullExchangeName='" + fullExchangeName + '\'' +
-                ", instrumentType='" + instrumentType + '\'' +
-                ", firstTradeDate=" + firstTradeDate +
-                ", regularMarketTime=" + regularMarketTime +
-                ", hasPrePostMarketData=" + hasPrePostMarketData +
-                ", gmtoffset=" + gmtoffset +
-                ", timezone='" + timezone + '\'' +
-                ", exchangeTimezoneName='" + exchangeTimezoneName + '\'' +
-                ", regularMarketPrice=" + regularMarketPrice +
-                ", fiftyTwoWeekHigh=" + fiftyTwoWeekHigh +
-                ", fiftyTwoWeekLow=" + fiftyTwoWeekLow +
-                ", regularMarketDayHigh=" + regularMarketDayHigh +
-                ", regularMarketDayLow=" + regularMarketDayLow +
-                ", regularMarketVolume=" + regularMarketVolume +
-                ", longName='" + longName + '\'' +
-                ", shortName='" + shortName + '\'' +
-                ", chartPreviousClose=" + chartPreviousClose +
-                ", previousClose=" + previousClose +
-                ", scale=" + scale +
-                ", priceHint=" + priceHint +
-                ", currentTradingPeriod=" + currentTradingPeriod +
-                ", tradingPeriods=" + tradingPeriods +
-                ", dataGranularity='" + dataGranularity + '\'' +
-                ", range='" + range + '\'' +
-                ", validRanges=" + validRanges +
-                '}';
-    }
 }

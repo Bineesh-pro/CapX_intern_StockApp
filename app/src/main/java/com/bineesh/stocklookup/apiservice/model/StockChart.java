@@ -14,12 +14,5 @@ public class StockChart {
         return error;
     }
 
-    @Override
-    public String toString() {
-        return "StockChart{" +
-                "result=" + result +
-                ", error=" + error +
-                '}';
-    }
 }
 

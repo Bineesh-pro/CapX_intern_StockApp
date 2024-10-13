@@ -9,10 +9,4 @@ public class Indicators {
         return quote;
     }
 
-    @Override
-    public String toString() {
-        return "Indicators{" +
-                "quote=" + quote +
-                '}';
-    }
 }

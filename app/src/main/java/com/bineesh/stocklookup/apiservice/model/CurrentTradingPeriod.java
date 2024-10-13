@@ -5,24 +5,5 @@ public class CurrentTradingPeriod {
     public Regular regular;
     public Post post;
 
-    public Pre getPre() {
-        return pre;
-    }
 
-    public Regular getRegular() {
-        return regular;
-    }
-
-    public Post getPost() {
-        return post;
-    }
-
-    @Override
-    public String toString() {
-        return "CurrentTradingPeriod{" +
-                "pre=" + pre +
-                ", regular=" + regular +
-                ", post=" + post +
-                '}';
-    }
 }

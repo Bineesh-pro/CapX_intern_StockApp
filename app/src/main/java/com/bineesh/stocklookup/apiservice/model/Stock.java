@@ -7,10 +7,4 @@ public class Stock {
         return chart;
     }
 
-    @Override
-    public String toString() {
-        return "Stock{" +
-                "chart=" + chart +
-                '}';
-    }
 }
