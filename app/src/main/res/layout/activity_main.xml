@@ -61,6 +61,8 @@
             android:layout_margin="5dp"
             android:id="@+id/query"
             android:padding="5dp"
+            android:minLines="1"
+            android:maxLength="10"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
@@ -99,7 +101,7 @@
 
     <LinearLayout
         android:layout_width="0dp"
-        android:visibility="visible"
+        android:visibility="gone"
         android:orientation="vertical"
         android:layout_margin="10dp"
         android:id="@+id/info_layout"
@@ -111,7 +113,6 @@
 
         <ImageView
             android:layout_width="match_parent"
-            android:visibility="visible"
             android:scaleType="fitXY"
             android:layout_margin="5dp"
             android:src="@drawable/stock"
@@ -136,7 +137,7 @@
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
-        android:visibility="gone"
+        android:visibility="visible"
         android:layout_margin="10dp"
         android:id="@+id/stock_details_card"
         app:layout_constraintTop_toBottomOf="@id/guide_line_top"
@@ -152,6 +153,7 @@
                 android:layout_width="match_parent"
                 android:text="Apple Inc. (AAPL)"
                 android:textStyle="bold"
+                android:textColor="@color/black"
                 android:id="@+id/company_name"
                 android:textSize="30sp"
                 android:layout_height="wrap_content">
@@ -160,7 +162,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:text="0.0"
-                android:textColor="#001F68"
+                android:textColor="#001649"
                 android:id="@+id/price"
                 android:textStyle="bold"
                 android:textSize="28sp"
@@ -169,7 +171,7 @@
 
             <TextView
                 android:layout_width="match_parent"
-                android:text="+1.13 (+0.50%)"
+                android:text="+00.00 (+0.00%)"
                 android:id="@+id/change_and_percent"
                 android:textStyle="bold"
                 android:textColor="#205E00"
@@ -177,21 +179,148 @@
                 android:layout_height="wrap_content">
             </TextView>
 
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:orientation="horizontal"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_weight="1"
+                    android:text="Currency : "
+                    android:textStyle="normal"
+                    android:textColor="@color/black"
+                    android:textSize="18sp"
+                    android:layout_height="wrap_content">
+                </TextView>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:text="INR"
+                    android:layout_weight="1"
+                    android:id="@+id/currency"
+                    android:textStyle="bold"
+                    android:textColor="#38003F"
+                    android:textSize="18sp"
+                    android:layout_height="wrap_content">
+                </TextView>
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:orientation="horizontal"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_weight="1"
+                    android:text="time zone : "
+                    android:textStyle="normal"
+                    android:textColor="@color/black"
+                    android:textSize="18sp"
+                    android:layout_height="wrap_content">
+                </TextView>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:text="UTC"
+                    android:layout_weight="1"
+                    android:id="@+id/timezone"
+                    android:textStyle="bold"
+                    android:textColor="#38003F"
+                    android:textSize="18sp"
+                    android:layout_height="wrap_content">
+                </TextView>
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:orientation="horizontal"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_weight="1"
+                    android:text="Previous close : "
+                    android:textStyle="normal"
+                    android:textColor="@color/black"
+                    android:textSize="18sp"
+                    android:layout_height="wrap_content">
+                </TextView>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:text="0.00"
+                    android:layout_weight="1"
+                    android:id="@+id/pre_close"
+                    android:textStyle="bold"
+                    android:textColor="#38003F"
+                    android:textSize="18sp"
+                    android:layout_height="wrap_content">
+                </TextView>
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:orientation="horizontal"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_weight="1"
+                    android:text="Day's Range : "
+                    android:textStyle="normal"
+                    android:textColor="@color/black"
+                    android:textSize="18sp"
+                    android:layout_height="wrap_content">
+                </TextView>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:text="0.00 - 0.00"
+                    android:layout_weight="1"
+                    android:id="@+id/days_range"
+                    android:textStyle="bold"
+                    android:textColor="#38003F"
+                    android:textSize="18sp"
+                    android:layout_height="wrap_content">
+                </TextView>
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:orientation="horizontal"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_weight="1"
+                    android:text="52 Week Range : "
+                    android:textStyle="normal"
+                    android:textColor="@color/black"
+                    android:textSize="18sp"
+                    android:layout_height="wrap_content">
+                </TextView>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:text="0.00 - 0.00"
+                    android:layout_weight="1"
+                    android:id="@+id/fifty_two_weeks_range"
+                    android:textStyle="bold"
+                    android:textColor="#38003F"
+                    android:textSize="18sp"
+                    android:layout_height="wrap_content">
+                </TextView>
+
+            </LinearLayout>
+
+
+
         </LinearLayout>
 
     </androidx.cardview.widget.CardView>
 
-    <com.lottiefiles.dotlottie.core.widget.DotLottieAnimation
-        android:layout_width="match_parent"
-        app:dotLottie_loop="true"
-        app:dotLottie_src="@raw/stock"
-        app:dotLottie_autoplay="true"
-        app:layout_constraintTop_toBottomOf="@id/query"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_height="0dp">
-    </com.lottiefiles.dotlottie.core.widget.DotLottieAnimation>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

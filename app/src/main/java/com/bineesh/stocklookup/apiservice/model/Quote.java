@@ -5,7 +5,7 @@ import java.util.ArrayList;
 public class Quote {
     public ArrayList<Integer> volume;
 
-    public ArrayList<Double> myopen;
+    public ArrayList<Double> open;
     public ArrayList<Double> low;
     public ArrayList<Double> close;
     public ArrayList<Double> high;
@@ -14,8 +14,8 @@ public class Quote {
         return volume;
     }
 
-    public ArrayList<Double> getMyopen() {
-        return myopen;
+    public ArrayList<Double> getOpen() {
+        return open;
     }
 
     public ArrayList<Double> getLow() {
@@ -34,7 +34,7 @@ public class Quote {
     public String toString() {
         return "Quote{" +
                 "volume=" + volume +
-                ", myopen=" + myopen +
+                ", myopen=" + open +
                 ", low=" + low +
                 ", close=" + close +
                 ", high=" + high +

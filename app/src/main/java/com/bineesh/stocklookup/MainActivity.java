@@ -19,10 +19,19 @@ import androidx.core.view.WindowInsetsCompat;
 
 import com.bineesh.stocklookup.apiservice.RetrofitClient;
 import com.bineesh.stocklookup.apiservice.StockAPI;
+import com.bineesh.stocklookup.apiservice.model.Indicators;
 import com.bineesh.stocklookup.apiservice.model.Meta;
+import com.bineesh.stocklookup.apiservice.model.Quote;
 import com.bineesh.stocklookup.apiservice.model.Result;
 import com.bineesh.stocklookup.apiservice.model.Stock;
 import com.bineesh.stocklookup.apiservice.model.StockChart;
+import com.github.mikephil.charting.charts.LineChart;
+import com.github.mikephil.charting.data.Entry;
+import com.github.mikephil.charting.data.LineData;
+import com.github.mikephil.charting.data.LineDataSet;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -31,7 +40,7 @@ import retrofit2.Retrofit;
 
 public class MainActivity extends AppCompatActivity {
 
-    TextView searchButton, companyName, price, changeAndPercent, stockInfoData;
+    TextView searchButton, companyName, price, changeAndPercent, stockInfoData, currency, timeZone, preClose, daysRange, fiftyTwoWeeksRange;
     EditText searchQuery;
     CardView stockCard;
     ImageView stockInfoImage;
@@ -58,7 +67,11 @@ public class MainActivity extends AppCompatActivity {
         stockInfoImage = findViewById(R.id.info_img);
         progressBar = findViewById(R.id.progress_bar);
         stockInfoLayout = findViewById(R.id.info_layout);
-
+        currency = findViewById(R.id.currency);
+        timeZone = findViewById(R.id.timezone);
+        preClose = findViewById(R.id.pre_close);
+        daysRange = findViewById(R.id.days_range);
+        fiftyTwoWeeksRange = findViewById(R.id.fifty_two_weeks_range);
         setDefault();
 
         searchButton.setOnClickListener(v -> {
@@ -108,6 +121,15 @@ public class MainActivity extends AppCompatActivity {
                                         changeAndPercent.setTextColor(getResources().getColor(R.color.red,getTheme()));
                                         changeAndPercent.setText(s);
                                     }
+
+                                    currency.setText(meta.getCurrency());
+                                    timeZone.setText(meta.getTimezone());
+                                    preClose.setText(String.valueOf(meta.getPreviousClose()));
+                                    String dr = meta.getRegularMarketDayLow()+" - "+meta.getRegularMarketDayHigh();
+                                    daysRange.setText(dr);
+                                    String fw = meta.getFiftyTwoWeekLow()+" - "+meta.getFiftyTwoWeekHigh();
+                                    fiftyTwoWeeksRange.setText(fw);
+
                                     stockCard.setVisibility(View.VISIBLE);
                                 }
                             }else{

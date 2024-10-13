@@ -38,6 +38,7 @@ dependencies {
     implementation(libs.activity)
     implementation(libs.constraintlayout)
     implementation (libs.retrofit)
+    implementation ("com.github.PhilJay:MPAndroidChart:v3.1.0")
     implementation (libs.converter.gson)
     implementation(libs.dotlottie.android)
     testImplementation(libs.junit)
