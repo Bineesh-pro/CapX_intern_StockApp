@@ -4,13 +4,13 @@ import java.util.ArrayList;
 
 public class StockChart {
     public ArrayList<Result> result;
-    public Object error;
+    public StockError error;
 
     public ArrayList<Result> getResult() {
         return result;
     }
 
-    public Object getError() {
+    public StockError getStockError() {
         return error;
     }
 

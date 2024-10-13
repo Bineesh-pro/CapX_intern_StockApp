@@ -3,6 +3,9 @@ package com.bineesh.stocklookup;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -16,6 +19,7 @@ import androidx.core.view.WindowInsetsCompat;
 
 import com.bineesh.stocklookup.apiservice.RetrofitClient;
 import com.bineesh.stocklookup.apiservice.StockAPI;
+import com.bineesh.stocklookup.apiservice.model.Meta;
 import com.bineesh.stocklookup.apiservice.model.Result;
 import com.bineesh.stocklookup.apiservice.model.Stock;
 import com.bineesh.stocklookup.apiservice.model.StockChart;
@@ -27,9 +31,12 @@ import retrofit2.Retrofit;
 
 public class MainActivity extends AppCompatActivity {
 
-    TextView searchButton, companyName, price, changeAndPercent;
+    TextView searchButton, companyName, price, changeAndPercent, stockInfoData;
     EditText searchQuery;
     CardView stockCard;
+    ImageView stockInfoImage;
+    ProgressBar progressBar;
+    LinearLayout stockInfoLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,13 +54,23 @@ public class MainActivity extends AppCompatActivity {
         changeAndPercent = findViewById(R.id.change_and_percent);
         searchQuery = findViewById(R.id.query);
         stockCard = findViewById(R.id.stock_details_card);
+        stockInfoData = findViewById(R.id.info_text);
+        stockInfoImage = findViewById(R.id.info_img);
+        progressBar = findViewById(R.id.progress_bar);
+        stockInfoLayout = findViewById(R.id.info_layout);
+
+        setDefault();
 
         searchButton.setOnClickListener(v -> {
 
             String query = searchQuery.getText().toString();
             if(query.isEmpty()){
+                setDefault();
                 Toast.makeText(this,"Please provide Stock Symbol",Toast.LENGTH_LONG).show();
             }else {
+                progressBar.setVisibility(View.VISIBLE);
+                stockCard.setVisibility(View.GONE);
+                stockInfoLayout.setVisibility(View.GONE);
                 Retrofit retrofit = RetrofitClient.getRetrofitInstance();
                 StockAPI stockAPI = retrofit.create(StockAPI.class);
 
@@ -61,9 +78,46 @@ public class MainActivity extends AppCompatActivity {
                 stockDetails.enqueue(new Callback<Stock>() {
                     @Override
                     public void onResponse(@NonNull Call<Stock> call, @NonNull Response<Stock> response) {
-                        System.out.println(call.request().url());
-                        Stock stock = response.body();
-                        System.out.println(stock);
+                        progressBar.setVisibility(View.GONE);
+                        if(response.body() != null){
+                            Stock stock = response.body();
+                            if(stock.getChart() != null){
+                                StockChart stockChart = stock.getChart();
+                                if(stockChart.getStockError() != null){
+                                    Toast.makeText(getApplicationContext(),stockChart.getStockError().getDescription(),Toast.LENGTH_LONG).show();
+                                    setStockInfo(stockChart.getStockError().getDescription());
+                                }else{
+                                    Result stockResult = stockChart.getResult().get(0);
+                                    Meta meta = stockResult.getMeta();
+                                    String compName = meta.getLongName();
+                                    if(compName == null || compName.isEmpty()){
+                                        compName = meta.getSymbol();
+                                    }
+                                    companyName.setText(compName);
+                                    double amtPre = meta.getChartPreviousClose();
+                                    double amtNow = meta.getRegularMarketPrice();
+                                    price.setText(String.valueOf(amtNow));
+                                    double diff = amtNow - amtPre;
+                                    double diffPercent = diff / amtNow * 100;
+                                    if(diff > 0){
+                                        String s = String.format("+%.2f (+%.2f",diff,diffPercent)+"%)";
+                                        changeAndPercent.setText(s);
+                                        changeAndPercent.setTextColor(getResources().getColor(R.color.green,getTheme()));
+                                    }else{
+                                        String s = String.format("%.2f (%.2f",diff,diffPercent)+"%)";
+                                        changeAndPercent.setTextColor(getResources().getColor(R.color.red,getTheme()));
+                                        changeAndPercent.setText(s);
+                                    }
+                                    stockCard.setVisibility(View.VISIBLE);
+                                }
+                            }else{
+                                setStockInfo("No Data Found !");
+                            }
+                        }else{
+                            Toast.makeText(getApplicationContext(),"Some thing went wrong",Toast.LENGTH_LONG).show();
+                            setStockInfo("Verify input Symbol");
+                        }
+
                     }
 
                     @Override
@@ -73,5 +127,21 @@ public class MainActivity extends AppCompatActivity {
                 });
             }
         });
+    }
+
+    private void setDefault(){
+        progressBar.setVisibility(View.GONE);
+        stockCard.setVisibility(View.GONE);
+        stockInfoImage.setImageResource(R.drawable.stock);
+        stockInfoData.setText("Search Stock Details");
+        stockInfoLayout.setVisibility(View.VISIBLE);
+    }
+
+    private void setStockInfo(String msg){
+        progressBar.setVisibility(View.GONE);
+        stockCard.setVisibility(View.GONE);
+        stockInfoImage.setImageResource(R.drawable.no_data);
+        stockInfoData.setText(msg);
+        stockInfoLayout.setVisibility(View.VISIBLE);
     }
 }

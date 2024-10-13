@@ -17,6 +17,38 @@
 
     <androidx.constraintlayout.widget.Guideline
         android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:id="@+id/guide_line_center_top"
+        app:layout_constraintGuide_percent="0.25"
+        android:layout_height="wrap_content">
+    </androidx.constraintlayout.widget.Guideline>
+
+    <androidx.constraintlayout.widget.Guideline
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:id="@+id/guide_line_center_bottom"
+        app:layout_constraintGuide_percent="0.75"
+        android:layout_height="wrap_content">
+    </androidx.constraintlayout.widget.Guideline>
+
+    <androidx.constraintlayout.widget.Guideline
+        android:layout_width="match_parent"
+        android:orientation="vertical"
+        android:id="@+id/guide_line_center_right"
+        app:layout_constraintGuide_percent="0.80"
+        android:layout_height="wrap_content">
+    </androidx.constraintlayout.widget.Guideline>
+
+    <androidx.constraintlayout.widget.Guideline
+        android:layout_width="match_parent"
+        android:orientation="vertical"
+        android:id="@+id/guide_line_center_left"
+        app:layout_constraintGuide_percent="0.20"
+        android:layout_height="wrap_content">
+    </androidx.constraintlayout.widget.Guideline>
+
+    <androidx.constraintlayout.widget.Guideline
+        android:layout_width="match_parent"
         android:orientation="vertical"
         android:id="@+id/guide_line_top_right"
         app:layout_constraintGuide_percent="0.8"
@@ -34,7 +66,7 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="@id/guide_line_top"
             android:background="@drawable/search_bg"
-            android:hint="Search Stock"
+            android:hint="Search Stock by Symbol Eg: AAPL"
         />
 
         <TextView
@@ -54,8 +86,57 @@
             android:layout_height="wrap_content">
         </TextView>
 
+    <ProgressBar
+        android:layout_width="match_parent"
+        android:visibility="gone"
+        android:foregroundGravity="center"
+        android:layout_margin="10dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:id="@+id/progress_bar"
+        app:layout_constraintTop_toBottomOf="@id/guide_line_top"
+        android:layout_height="wrap_content">
+    </ProgressBar>
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:visibility="visible"
+        android:orientation="vertical"
+        android:layout_margin="10dp"
+        android:id="@+id/info_layout"
+        app:layout_constraintTop_toBottomOf="@id/guide_line_center_top"
+        app:layout_constraintBottom_toTopOf="@id/guide_line_center_bottom"
+        app:layout_constraintStart_toStartOf="@id/guide_line_center_left"
+        app:layout_constraintEnd_toEndOf="@id/guide_line_center_right"
+        android:layout_height="0dp">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:visibility="visible"
+            android:scaleType="fitXY"
+            android:layout_margin="5dp"
+            android:src="@drawable/stock"
+            android:id="@+id/info_img"
+            android:layout_weight="2"
+            app:layout_constraintTop_toBottomOf="@id/guide_line_top"
+            android:layout_height="wrap_content">
+        </ImageView>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:text="Search stock details!"
+            android:id="@+id/info_text"
+            android:textAlignment="center"
+            android:textStyle="bold"
+            android:textColor="#005C36"
+            android:textSize="30sp"
+            android:layout_height="wrap_content">
+        </TextView>
+
+    </LinearLayout>
+
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
+        android:visibility="gone"
         android:layout_margin="10dp"
         android:id="@+id/stock_details_card"
         app:layout_constraintTop_toBottomOf="@id/guide_line_top"
@@ -78,7 +159,8 @@
 
             <TextView
                 android:layout_width="match_parent"
-                android:text="226.80"
+                android:text="0.0"
+                android:textColor="#001F68"
                 android:id="@+id/price"
                 android:textStyle="bold"
                 android:textSize="28sp"
@@ -98,6 +180,18 @@
         </LinearLayout>
 
     </androidx.cardview.widget.CardView>
+
+    <com.lottiefiles.dotlottie.core.widget.DotLottieAnimation
+        android:layout_width="match_parent"
+        app:dotLottie_loop="true"
+        app:dotLottie_src="@raw/stock"
+        app:dotLottie_autoplay="true"
+        app:layout_constraintTop_toBottomOf="@id/query"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_height="0dp">
+    </com.lottiefiles.dotlottie.core.widget.DotLottieAnimation>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
